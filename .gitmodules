@@ -1,0 +1,9 @@
+[submodule "sys/kaldi-native-fbank"]
+	path = sys/kaldi-native-fbank
+	url = https://github.com/csukuangfj/kaldi-native-fbank
+[submodule "kaldi-native-fbank"]
+	path = kaldi-native-fbank
+	url = https://github.com/csukuangfj/kaldi-native-fbank
+[submodule "knf"]
+	path = knf
+	url = https://github.com/csukuangfj/kaldi-native-fbank
