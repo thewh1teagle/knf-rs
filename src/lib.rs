@@ -2,11 +2,12 @@
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
+use eyre::{ContextCompat, Result};
 use ndarray::Array2;
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
-pub fn compute_fbank(samples: &[f32]) -> Array2<f32> {
+pub fn compute_fbank(samples: &[f32]) -> Result<Array2<f32>> {
     let mut result = unsafe { ComputeFbank(samples.as_ptr(), samples.len().try_into().unwrap()) };
 
     // Extract frames
@@ -24,16 +25,17 @@ pub fn compute_fbank(samples: &[f32]) -> Array2<f32> {
             result.num_bins.try_into().unwrap(),
         ),
         frames,
-    ).unwrap();
+    )
+    .unwrap();
 
     unsafe {
         DestroyFbankResult(&mut result as *mut _);
     }
 
-    let mean = frames_array.mean_axis(ndarray::Axis(0)).unwrap();
+    let mean = frames_array.mean_axis(ndarray::Axis(0)).context("mean")?;
     let features = frames_array - mean;
 
-    features
+    Ok(features)
 }
 
 #[cfg(test)]
