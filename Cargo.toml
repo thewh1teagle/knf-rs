@@ -2,7 +2,8 @@
 name = "knf-rs"
 version = "0.1.0"
 edition = "2021"
-
+license = "MIT"
+description = "fbank features extractor without external dependencies"
 
 [build-dependencies]
 cmake = "0.1.50"
