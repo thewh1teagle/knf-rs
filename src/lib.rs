@@ -38,6 +38,12 @@ pub fn compute_fbank(samples: &[f32]) -> Result<Array2<f32>> {
     Ok(features)
 }
 
+pub fn convert_integer_to_float_audio(samples: &[i16], output: &mut [f32]) {
+    for (input, output) in samples.iter().zip(output.iter_mut()) {
+        *output = *input as f32 / 32768.0;
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::compute_fbank;
