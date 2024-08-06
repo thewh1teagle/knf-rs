@@ -53,29 +53,3 @@ FbankResult ComputeFbank(const float *waveform, int32_t waveform_size) {
     result.num_bins = num_bins;
     return result;
 }
-
-// int main() {
-//     // Generate dummy data: a simple sine wave
-//     int32_t sample_rate = 16000;
-//     int32_t duration = 1; // 1 second
-//     int32_t waveform_size = sample_rate * duration;
-//     std::vector<float> waveform(waveform_size);
-
-//     float frequency = 440.0; // A4 note
-//     for (int32_t i = 0; i < waveform_size; ++i) {
-//         waveform[i] = 0.5 * sin(2.0 * M_PI * frequency * i / sample_rate);
-//     }
-
-//     FbankResult result = ComputeFbank(waveform.data(), waveform_size);
-
-//     for (int32_t i = 0; i < result.num_frames; ++i) {
-//         for (int32_t j = 0; j < result.num_bins; ++j) {
-//             std::cout << result.frames[i * result.num_bins + j] << " ";
-//         }
-//         std::cout << std::endl;
-//     }
-
-//     DestroyFbankResult(&result);
-
-//     return 0;
-// }
