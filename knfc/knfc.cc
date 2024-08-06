@@ -29,6 +29,8 @@ FbankResult ComputeFbank(const float *waveform, int32_t waveform_size) {
     mel_opts.num_bins = 80;
     mel_opts.debug_mel = false;
 
+    fbank_opts.mel_opts = mel_opts;
+    fbank_opts.frame_opts = frame_opts;
     knf::OnlineFbank fbank(fbank_opts);
     fbank.AcceptWaveform(frame_opts.samp_freq, waveform, waveform_size);
     fbank.InputFinished();
