@@ -77,7 +77,6 @@ fn main() {
     println!("cargo:rerun-if-changed=./knf");
     println!("cargo:rerun-if-changed=./knfc");
     println!("cargo:rerun-if-changed=wrapper.h");
-    
 
     debug_log!("Bindings Created");
 
@@ -92,10 +91,10 @@ fn main() {
     println!("cargo:rustc-link-search={}", out_dir.join("lib").display());
 
     // Link
-    println!("cargo:rustc-link-lib=c++");
+    if cfg!(unix) {
+        println!("cargo:rustc-link-lib=c++");
+    }
+
     println!("cargo:rustc-link-lib=static={}", "knfc");
     println!("cargo:rustc-link-lib=static={}", "kaldi-native-fbank-core");
-    
-
-    
 }
