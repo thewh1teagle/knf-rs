@@ -151,7 +151,7 @@ dependencies = [
 
 [[package]]
 name = "knf-rs"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "eyre",
  "hound",
@@ -161,7 +161,7 @@ dependencies = [
 
 [[package]]
 name = "knf-rs-sys"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "bindgen",
  "cmake",
