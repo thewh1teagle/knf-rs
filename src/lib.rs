@@ -1,18 +1,13 @@
-#![allow(non_upper_case_globals)]
-#![allow(non_camel_case_types)]
-#![allow(non_snake_case)]
-
 use eyre::{bail, ContextCompat, Result};
 use ndarray::Array2;
-
-include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 pub fn compute_fbank(samples: &[f32]) -> Result<Array2<f32>> {
     if samples.is_empty() {
         bail!("The samples array is empty. No features to compute.")
     }
 
-    let mut result = unsafe { ComputeFbank(samples.as_ptr(), samples.len().try_into().unwrap()) };
+    let mut result =
+        unsafe { knf_rs_sys::ComputeFbank(samples.as_ptr(), samples.len().try_into().unwrap()) };
 
     // Extract frames
     let frames = unsafe {
@@ -33,7 +28,7 @@ pub fn compute_fbank(samples: &[f32]) -> Result<Array2<f32>> {
     .unwrap();
 
     unsafe {
-        DestroyFbankResult(&mut result as *mut _);
+        knf_rs_sys::DestroyFbankResult(&mut result as *mut _);
     }
 
     if frames_array.is_empty() {

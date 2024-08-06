@@ -5,11 +5,8 @@ edition = "2021"
 license = "MIT"
 description = "fbank features extractor without external dependencies"
 
-[build-dependencies]
-cmake = "0.1.50"
-bindgen = "0.69.4"
-
 [dependencies]
+knf-rs-sys = { path = "sys" }
 eyre = "0.6.12"
 hound = "3.5.1"
 ndarray = "0.15.6"
