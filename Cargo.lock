@@ -9,6 +9,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "26a5c3fd7bfa1ce3897a3a3501d362b2d87b7f2583ebcb4a949ec25911025cbc"
 
 [[package]]
+name = "cmake"
+version = "0.1.50"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a31c789563b815f77f4250caee12365734369f942439b7defd71e18a48197130"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "cxx"
 version = "1.0.124"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -41,6 +50,7 @@ dependencies = [
 name = "knf-rs"
 version = "0.1.0"
 dependencies = [
+ "cmake",
  "cxx",
 ]
 
