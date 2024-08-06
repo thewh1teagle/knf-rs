@@ -10,4 +10,9 @@ bindgen = "0.69.4"
 
 [dependencies]
 eyre = "0.6.12"
+hound = "3.5.1"
 ndarray = "0.15.6"
+
+[[bin]]
+name = "main"
+path = "bin/main.rs"
