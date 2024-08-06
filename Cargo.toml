@@ -3,8 +3,11 @@ name = "knf-rs"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-cxx = "1.0.124"
 
 [build-dependencies]
 cmake = "0.1.50"
+bindgen = "0.69.4"
+
+[dependencies]
+ndarray = "0.16.0"
+
