@@ -1,4 +1,4 @@
-use eyre::{bail, ContextCompat, Result};
+use eyre::{bail, Context, ContextCompat, Result};
 use ndarray::Array2;
 
 pub fn compute_fbank(samples: &[f32]) -> Result<Array2<f32>> {
@@ -6,8 +6,12 @@ pub fn compute_fbank(samples: &[f32]) -> Result<Array2<f32>> {
         bail!("The samples array is empty. No features to compute.")
     }
 
-    let mut result =
-        unsafe { knf_rs_sys::ComputeFbank(samples.as_ptr(), samples.len().try_into().unwrap()) };
+    let mut result = unsafe {
+        knf_rs_sys::ComputeFbank(
+            samples.as_ptr(),
+            samples.len().try_into().context("samples len")?,
+        )
+    };
 
     // Extract frames
     let frames = unsafe {
@@ -20,12 +24,11 @@ pub fn compute_fbank(samples: &[f32]) -> Result<Array2<f32>> {
 
     let frames_array = Array2::from_shape_vec(
         (
-            result.num_frames.try_into().unwrap(),
-            result.num_bins.try_into().unwrap(),
+            result.num_frames.try_into().context("num_frames")?,
+            result.num_bins.try_into().context("num_bins")?,
         ),
         frames,
-    )
-    .unwrap();
+    )?;
 
     unsafe {
         knf_rs_sys::DestroyFbankResult(&mut result as *mut _);

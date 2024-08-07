@@ -8,9 +8,4 @@ description = "fbank features extractor without external dependencies"
 [dependencies]
 knf-rs-sys = { path = "sys", version = "0.1.4" }
 eyre = "0.6.12"
-hound = "3.5.1"
 ndarray = "0.15.6"
-
-[[bin]]
-name = "main"
-path = "bin/main.rs"

@@ -16,7 +16,7 @@ fn copy_folder(src: &Path, dst: &Path) {
         std::process::Command::new("cp")
             .arg("-rf")
             .arg(src)
-            .arg(dst.parent().unwrap())
+            .arg(dst.parent().expect("no parent"))
             .status()
             .expect("Failed to execute cp command");
     }
@@ -32,8 +32,8 @@ fn copy_folder(src: &Path, dst: &Path) {
 }
 
 fn main() {
-    let target = env::var("TARGET").unwrap();
-    let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+    let target = env::var("TARGET").expect("no target");
+    let out_dir = PathBuf::from(env::var("OUT_DIR").expect("no out dir"));
     let manifest_dir = env::var("CARGO_MANIFEST_DIR").expect("Failed to get CARGO_MANIFEST_DIR");
     let knf_src = Path::new(&manifest_dir).join("knf");
     let knf_dst = out_dir.join("knf");
