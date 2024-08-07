@@ -84,15 +84,7 @@ fn main() {
 
     if cfg!(windows) {
         config.static_crt(cfg!(feature = "msvc-static"));
-        config.define(
-            "BUILD_SHARED_LIBS",
-            if cfg!(feature = "msvc-static") {
-                // Don't build shared libraries if msvc-static feature set
-                "OFF"
-            } else {
-                "ON"
-            },
-        );
+        debug_log!("MSVC_STATIC: {}", cfg!(feature = "msvc-static"));
     }
 
     config
