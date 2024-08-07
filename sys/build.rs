@@ -84,7 +84,7 @@ fn main() {
 
     config
         .profile(profile)
-        .static_crt(cfg!(windows))
+        .static_crt(cfg!(feature = "msvc-static"))
         .very_verbose(std::env::var("CMAKE_VERBOSE").is_ok()) // Not verbose by default
         .always_configure(false)
         .build();
