@@ -82,9 +82,12 @@ fn main() {
 
     let mut config = Config::new(&knfc_dst);
 
+    if cfg!(windows) {
+        config.static_crt(cfg!(feature = "msvc-static"));
+    }
+
     config
         .profile(profile)
-        .static_crt(cfg!(feature = "msvc-static"))
         .very_verbose(std::env::var("CMAKE_VERBOSE").is_ok()) // Not verbose by default
         .always_configure(false)
         .build();
