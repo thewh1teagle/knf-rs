@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Define options for the external project
 
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "Disable shared lib")
+option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 set(KALDI_NATIVE_FBANK_BUILD_PYTHON OFF CACHE BOOL "Disable Python build")
 set(KALDI_NATIVE_FBANK_BUILD_TESTS OFF CACHE BOOL "Disable Tests build")
 
