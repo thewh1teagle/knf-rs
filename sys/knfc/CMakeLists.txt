@@ -2,10 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(knfc)
 
-set(CMAKE_CXX_STANDARD 14)  # Change this from 11 to 14
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-# Define options for the external project
 
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 set(KALDI_NATIVE_FBANK_BUILD_PYTHON OFF CACHE BOOL "Disable Python build")
