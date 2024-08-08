@@ -108,6 +108,10 @@ fn main() {
         println!("cargo:rustc-link-lib=c++");
     }
 
+    if cfg!(target_os = "linux") {
+        println!("cargo:rustc-link-lib=stdc++");
+    }
+
     println!("cargo:rustc-link-lib=static={}", "knfc");
     println!("cargo:rustc-link-lib=static={}", "kaldi-native-fbank-core");
 }
