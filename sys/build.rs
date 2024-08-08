@@ -96,8 +96,12 @@ fn main() {
     println!("cargo:rustc-link-search={}", out_dir.join("lib").display());
 
     // Link
-    if cfg!(unix) {
+    if cfg!(target_os = "macos") {
         println!("cargo:rustc-link-lib=c++");
+    }
+
+    if cfg!(target_os = "linux") {
+        println!("cargo:rustc-link-lib=stdc++");
     }
 
     println!("cargo:rustc-link-lib=static={}", "knfc");
