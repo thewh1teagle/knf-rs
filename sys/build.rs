@@ -39,9 +39,7 @@ fn main() {
     let knf_dst = out_dir.join("knf");
     let knfc_src = Path::new(&manifest_dir).join("knfc");
     let knfc_dst = out_dir.join("knfc");
-    let static_crt = env::var("SHERPA_STATIC_CRT")
-        .map(|v| v == "1")
-        .unwrap_or(true);
+    let static_crt = env::var("KNF_STATIC_CRT").map(|v| v == "1").unwrap_or(true);
 
     let profile = if cfg!(debug_assertions) {
         "Debug"
