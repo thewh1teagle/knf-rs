@@ -1,6 +1,6 @@
 [package]
 name = "knf-rs-sys"
-version = "0.1.8"
+version = "0.1.9"
 edition = "2021"
 license = "MIT"
 description = "fbank features extractor without external dependencies"
@@ -22,5 +22,4 @@ bindgen = "0.69.4"
 cmake = "0.1.50"
 
 [features]
-default = ["msvc-static"]
-msvc-static = []
+default = []

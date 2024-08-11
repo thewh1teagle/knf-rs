@@ -39,6 +39,9 @@ fn main() {
     let knf_dst = out_dir.join("knf");
     let knfc_src = Path::new(&manifest_dir).join("knfc");
     let knfc_dst = out_dir.join("knfc");
+    let static_crt = env::var("SHERPA_STATIC_CRT")
+        .map(|v| v == "1")
+        .unwrap_or(true);
 
     let profile = if cfg!(debug_assertions) {
         "Debug"
@@ -83,8 +86,8 @@ fn main() {
     let mut config = Config::new(&knfc_dst);
 
     if cfg!(windows) {
-        config.static_crt(cfg!(feature = "msvc-static"));
-        debug_log!("MSVC_STATIC: {}", cfg!(feature = "msvc-static"));
+        config.static_crt(static_crt);
+        debug_log!("STATIC_CRT: {}", static_crt);
     }
 
     config
